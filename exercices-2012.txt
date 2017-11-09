@@ -1,0 +1,229 @@
+Exercices Ada - Version 2013-11-04
+
+Ceci est une liste d'exercices à effectuer pendant les TPs.  Ils ont
+pour but de vous faire pratiquer le langage, et d'illustrer différents
+aspects du langage.  Certains sont très classiques, d'autres j'espère,
+plus exotiques.  Ils sont globalement classes par ordre de
+difficulté. Je mets entre crochets [] les points du langage auquel
+l'exercice fait usage.
+
+1) [array]
+
+Ecrire le cops de:
+ function Invert (S : String) return String
+     ...
+  begin
+     ...
+  end Invert;
+ qui renvoie la chaine retournée, avec les mêmes bornes que S.
+
+Ecrire quelques procédures de tests.
+essais.adb:
+with Invert;
+with Ada.Text_IO; use Ada.Text_IO;
+
+procedure Essais is
+  ...
+begin
+  ...
+end Essais;
+
+1bis) [array]
+Ecrire le cops de:
+  procedure Invert (S : in out String) is
+     ...
+  begin
+     ...
+  end Invert;
+
+qui retourne la chaine S (sur place)
+Ecrire une procedure de test.
+
+2) [array, conversion]
+Ecrire une fonction qui convertit un Integer en String
+(sans utiliser 'Image).  Traiter d'abord les entier positifs,
+puis tous les entiers signes.
+Tester avec différentes valeurs.
+
+3) [array, conversion]
+Ecrire une fonction qui convertit une String en Integer.
+Traiter d'abord les positifs, puis l'ensembles des entiers.
+
+4) [array]
+Ecrire une fonction qui convertit un entier en chiffres
+romains.  Les chiffres romains sont IVXLCDM.
+
+5) [array]
+Ecrire la fonction inverse.
+
+5.1) [aggregates]
+
+Ecrire un programme qui affiche un triangle rectangle avec des '*' de
+taille N*N, le plus élégamment possible.  Par example pour N=4:
+
+   *
+  **
+ ***
+****
+
+6) [package]
+Ecrire un package (spec et body) qui implémente une pile d'entiers.
+Les sous-programmes publics sont:
+  procedure Pop (V : out Integer);
+  procedure Push (V : Integer);
+
+7) [package, private]
+Ajouter un type prive Stack au package précédant pour gérer plusieurs
+piles distinctes
+
+8) [private]
+Modifier l'implémentation du package de (7) pour utiliser une liste chainée
+ou un tableau.
+
+9) [package, private, generic]
+Rendre le package précédant générique sur le type des éléments de la pile
+
+10) [package, generic]
+Modifier au besoin le package précédant pour qu'il fonctionne avec des types
+indéfinis (tel que String)
+
+11) [protected types]
+Rendre le package précédant reentrant (task safe)
+
+12) [Ada.Command_Line, Ada.Text_IO]
+Ecrire en Ada la command echo (sans gérer ni -n, ni \c)
+
+13) [Ada.Text_IO]
+Ecrire un programme qui lit un fichier, et affiche le nombre d'occurences pour
+chaque lettre.
+Par example, pour:
+
+For example if the user enters the lines:
+Tried to run.  Tried to hide. Break on through to the other side.
+
+le programme affichera:
+' '        12
+'.'        3
+'B'        1
+'T'        2
+'a'        1
+'d'        4
+'e'        7
+'g'        1
+'h'        5
+'i'        4
+'k'        1
+'n'        2
+'o'        6
+'r'        6
+'s'        1
+'t'        6
+'u'        2
+
+13b) [access]
+Créer un arbre de Huffman a partir des occurrences. Un arbre de
+Huffman est un arbre binaire (chaque noeud a deux enfants), et ses
+feuilles sont un couple (lettre, occurrence). On associe a chaque
+noeud un poids, qui est la somme du poids de ses enfants, le poids
+d'une feuille étant le nombre d'occurrences. Pour construire l'arbre,
+procéder comme ceci: créer l'ensemble des feuilles et les mettre dans
+un ensemble. Puis réduire l'ensemble jusqu'a ce qu'il ne contienne
+qu'un seul élément, le résultat: prendre les deux éléments ayant le
+poids minimal, puis les remplacer par un noeud dont les enfants sont
+ces deux éléments.
+
+13c)
+Afficher le code de Huffman de chaque lettre (avec 0 pour le premier
+enfant, 1 pour le second, en partant de la racine).
+
+13d) [unsigned, low-level]
+Compresser un texte en utilisant l'algorithme de huffmann, ecrire la
+table de codage separemment
+
+13e)
+Ecrire le decompresseur.
+
+14) [tasking]
+Ecrire un objet protege qui implemente un semaphore compte.
+Ecrire un programme de tests
+
+14b) [tasking]
+Ecrire une version du semaphore uniquement avec des taches.
+
+15) [tasking]
+Implementer une queue fifo via un object protege pour interfacer une
+tache consommatrice et une tache productrice.
+
+16) [tasking] ascii animation
+Creer une tache periodique qui affiche a l'ecran un buffer de
+caracteres de taille 80x25 10 fois par seconde.  Ajouter une balle
+(avec un 'o') qui rebondit horizontalement.
+
+16b) [tasking]
+Modifier le programme précédant pour qu'il accepte un rendez-vous
+pendant l'attente. Ce rendez-vous permet de modifier le buffer
+d'affichage.  Ajouter une nouvelle tache qui prend en charge la balle.
+
+16c) [tasking]
+Ajouter de nouvelles balles (avec une tache par balle).
+
+17) [tagged types]
+En partant de 16, creer une mini-hierarchie de classes graphiques: point, rectangle, ligne horizontale et
+ligne verticale. Les operations sont:
+* Create
+* Draw
+* Move
+
+18) [Interfacing]
+Ecrire une procedure Ada qui affiche une String en utilisant une fonction C:
+
+procedure Affiche is
+  procedure Xxx (...);
+  pragma Import (C, Xxx);
+
+  procedure Display (S : String) is
+  ...
+  begin
+     ...
+     xxx (...);
+  end;
+  ...
+begin
+  Display (“Hello World”);
+end Affiche;
+
+18b) [interfacing]
+Ecrire une function Ada qui ‘convertit’ une chaine C en String Ada.
+
+19) [low-level representation]
+Ecrire un programme Ada qui affiche la taille d’un type access sur Integer et access sur String.
+
+Essayer (en utilisant gdb) de comprendre comment les types access sur
+tableau non-contraint (ex: String) sont implementés.  Avec gdb, passer
+du mode Ada au mode C (set lang c)
+
+20) [***]
+Une sequence de Langford d'ordre N est un arrangement de l'ensemble
+{1, 1, 2, 2, ... N, N} tel que pour tout k (entre 1 et N), les deux elements k
+de l'ensemble sont separes par k elements.
+
+Exemple: 3 1 2 1 3 2
+
+Il y a 3 nombres (1 2 1) entre les deux 3, il y a 2 nombres (1 3)
+entre les deux 2, et il y a un nombre (2) entre les deux 1.
+
+Ecrire un programme Ada qui affiche toutes les séquences possibles
+pour un N donné.
+
+21) [listes]
+
+Soit une boucle contenant N éléments, numerotés de 1 à N.  Afficher la
+séquence produite si on extrait les éléments par saut de P (etablir un
+algorithme efficace).
+
+Par exemple, si N = 5 et P = 3, on a:
+1-2-3-4-5 -> on extrait 1
+.-2-3-4-5 -> on extrait 4
+2-3-.-5 -> on extrait 3
+2-.-5 -> on extrait 5
+2 -> on extrait 2
