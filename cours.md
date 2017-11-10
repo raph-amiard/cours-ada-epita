@@ -6,8 +6,10 @@
 
 ## Historique
 
-- Dans les années 70, le DOD souffre d’une explosion du nombre des langages utilisés
-- Il lance un concours international pour un langage qui répond à toutes ces exigences (1974)
+- Dans les années 70, le DOD souffre d’une explosion du nombre des langages
+  utilisés
+- Il lance un concours international pour un langage qui répond à toutes ces
+  exigences (1974)
 
 ---
 
@@ -77,7 +79,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 --  Display a welcome message
 procedure Greet is
 begin
-    Put_Line ("Hello, world !");
+    Put_Line("Hello, world!");
 end Greet;
 ```
 
@@ -188,9 +190,9 @@ begin
       if I = 5 then
          exit;
       elsif I = 0 then
-         Put_Line ("Starting...");
+         Put_Line("Starting...");
       else
-         Put_Line ("Hello, World!");
+         Put_Line("Hello, World!");
       end if;
       I := I + 1;
    end loop;
@@ -245,12 +247,12 @@ begin
       -- Expression must be of a discrete type. All the
       -- values must be covered.
       case I is
-         when 0 => Put_Line ("Starting...");
-         when 3 .. 4 => Put_Line ("Hello");
+         when 0 => Put_Line("Starting...");
+         when 3 .. 4 => Put_Line("Hello");
          when 7 | 9 => exit;
          -- ‘when others’ must be the last one and alone (if
          -- present)
-         when others => Put_Line ("Hello, World!");
+         when others => Put_Line("Hello, World!");
       end case;
       I := I + 1;
    end loop;
@@ -259,7 +261,7 @@ end Greet;
 
 # Quizz: Imperative language
 
-## Quizz 1: Is there a compilation error ?
+## Quizz 1: Is there a compilation error?
 
 ```ada
 for I in 10 .. 1 loop
@@ -267,7 +269,7 @@ for I in 10 .. 1 loop
 end loop;
 ```
 
-## Quizz 2: Is there a compilation error ?
+## Quizz 2: Is there a compilation error?
 
 ```ada
 for I in reverse 1 .. 10 loop
@@ -275,19 +277,19 @@ for I in reverse 1 .. 10 loop
 end loop;
 ```
 
-## Quizz 3: Is there a compilation error ?
+## Quizz 3: Is there a compilation error?
 
 ```ada
 procedure Hello is
    I : Integer;
 begin
    for I in 1 .. 10 loop
-      Put_Line ("Hello, World!");
+      Put_Line("Hello, World!");
    end loop;
 end Hello;
 ```
 
-## Quizz 4: Is there a compilation error ?
+## Quizz 4: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -302,7 +304,7 @@ begin
 end Greet;
 ```
 
-## Quizz 5: Is there a compilation error ?
+## Quizz 5: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -311,13 +313,13 @@ procedure Greet is
     I : Integer := 2;
 begin
     while i < 10 loop
-        Put_Line ("Hello, World!");
+        Put_Line("Hello, World!");
         i := i + 1;
     end loop;
 end Greet;
 ```
 
-## Quizz 6: Is there a compilation error ?
+## Quizz 6: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -332,7 +334,7 @@ begin
 end Greet;
 ```
 
-## Quizz 7: Is there a compilation error ?
+## Quizz 7: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -344,9 +346,9 @@ begin
          exit;
       else
          if I = 0 then
-            Put_Line ("Starting...");
+            Put_Line("Starting...");
          else
-            Put_Line ("Hello, World!");
+            Put_Line("Hello, World!");
          end if;
       end if;
       I := I + 1;
@@ -354,7 +356,7 @@ begin
 end Greet;
 ```
 
-## Quizz 8: Is there a compilation error ?
+## Quizz 8: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -364,9 +366,9 @@ begin
    loop
       case I is
          when 0 =>
-            Put_Line ("Starting...");
+            Put_Line("Starting...");
          when 1 .. 4 =>
-            Put_Line ("Hello");
+            Put_Line("Hello");
          when 5 =>
             exit;
       end case;
@@ -375,7 +377,7 @@ begin
 end Greet;
 ```
 
-## Quizz 9: Is there a compilation error ?
+## Quizz 9: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -384,9 +386,9 @@ begin
    loop
       case I is
          when 0 =>
-            Put_Line ("Starting...");
+            Put_Line("Starting...");
          when 1 .. 4 =>
-            Put_Line ("Hello");
+            Put_Line("Hello");
          when others =>
             exit;
       end case;
@@ -395,7 +397,7 @@ begin
 end Greet;
 ```
 
-## Quizz 10: Is there a compilation error ?
+## Quizz 10: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -404,10 +406,10 @@ procedure Greet is
 begin
    loop
       case I is
-         when Integer’First .. 1 =>
-            Put_Line ("Starting...");
+         when Integer'First .. 1 =>
+            Put_Line("Starting...");
          when 1 .. 4 =>
-            Put_Line ("Hello");
+            Put_Line("Hello");
          when others =>
             exit;
       end case;
@@ -416,14 +418,14 @@ begin
 end Greet;
 ```
 
-## Quizz 11: Which one is an error ?
+## Quizz 11: Which one is an error?
 
 ```ada
 V    : Integer;
 1V   : Integer;
-V_   : Integer; 
+V_   : Integer;
 _V   : Integer;
-V__1 : Integer; 
+V__1 : Integer;
 V_1  : Integer;
 ```
 
@@ -431,7 +433,7 @@ V_1  : Integer;
 
 ## Question
 
-### What is a type ?
+### What is a type?
 
 ## Integers
 
@@ -466,7 +468,7 @@ begin
       if I = My_Int'Last then
       --           ^ Higher bound of the type
       --  'First is the lower bound
-         Put_Line ("Bye");
+         Put_Line("Bye");
       else
          Put_Line("Hello, World!");
       end if;
@@ -478,7 +480,7 @@ end Greet;
 
 ```ada
 procedure Greet is
-   A : Integer := Integer’Last;
+   A : Integer := Integer'Last;
    B : Integer;
 begin
    B := A + 5;
@@ -519,13 +521,13 @@ begin
    for I in Days loop
       case I is
          when Saturday .. Sunday =>
-            Put_Line ("Week end!");
+            Put_Line("Week end!");
 
-	 --  Completeness checking on enums
+         --  Completeness checking on enums
          when others =>
-            Put_Line (“Hello on “ & Days’Image (I));
-	    --  'Image attribute, converts a value to a
-	    --  String
+            Put_Line("Hello on " & Days'Image (I));
+            --  'Image attribute, converts a value to a
+            --  String
       end case;
    end loop;
 end Greet;
@@ -547,7 +549,7 @@ procedure Greet is
 begin
    --  Not correct: types mismatch
    Dist_Us := Dist_Eu * 1609 / 1000;
-   Put_Line (Miles’Image (Dist_Us));
+   Put_Line(Miles'Image (Dist_Us));
 end Greet;
 ```
 
@@ -565,7 +567,7 @@ begin
    --         ^ Type conversion, from Meters to Miles
    --  Now the code is correct
 
-   Put_Line (Miles’Image (Dist_Us));
+   Put_Line(Miles'Image (Dist_Us));
 end;
 ```
 
@@ -594,9 +596,9 @@ procedure Greet is
    C : Character;
 begin
    C := '?';
-   Put_Line ("""Ascii"" code of '" & C & "' is"
+   Put_Line("""Ascii"" code of '" & C & "' is"
    --         ^ Use "" to insert quote in a string
-             & Integer’Image (Character'Pos (C)));
+             & Integer'Image (Character'Pos (C)));
    --                                  ^ 'Pos converts a
    --                                     value to its position
 
@@ -622,9 +624,9 @@ begin
          --  Just like a type, a subtype can be used as a
          --  range
          when Weekend_Days =>
-            Put_Line ("Week end!");
+            Put_Line("Week end!");
          when others =>
-            Put_Line (“Hello on “ & Days’Image (I));
+            Put_Line("Hello on " & Days'Image (I));
       end case;
    end loop;
 end Greet;
@@ -655,32 +657,32 @@ end Greet;
 
 # Quizz: Types
 
-## Quizz 1: Is there a compilation error ?
+## Quizz 1: Is there a compilation error?
 
 ```ada
 type My_Int is range 1 .. 20.5;
 ```
 
-## Quizz 2: Is there a compilation error ?
+## Quizz 2: Is there a compilation error?
 
 ```ada
 type My_Int is range 1 .. 20.0;
 ```
 
-## Quizz 3: Is there a compilation error ?
+## Quizz 3: Is there a compilation error?
 
 ```ada
 A : Integer := 5;
 type My_Int is range A .. 20;
 ```
 
-## Quizz 4: Is there a compilation error ?
+## Quizz 4: Is there a compilation error?
 
 ```ada
 type My_Int is range 1 .. Integer'Last;
 ```
 
-## Quizz 5: Is there a compilation error ?
+## Quizz 5: Is there a compilation error?
 
 ```ada
 type My_Int_1 is range 1 .. Integer'Last;
@@ -688,36 +690,36 @@ type My_Int_2 is range Integer'First .. 0;
 type My_Int_3 is range My_Int_2'First .. My_Int_2'Last;
 ```
 
-## Quizz 6: Is there a compilation error ?
+## Quizz 6: Is there a compilation error?
 
 ```ada
-type Entier1 is range 1 .. Integer'Last;
-subtype Entier2 is Entier1 range 1 .. 100;
+type My_Int_1 is range 1 .. Integer'Last;
+subtype My_Int_2 is My_Int_1 range 1 .. 100;
 
-V1 : Entier1 := 5;
-V2 : Entier2;
+V1 : My_Int_1 := 5;
+V2 : My_Int_2;
 V2 := V1;
 ```
 
-## Quizz 7: Is there a compilation error ?
+## Quizz 7: Is there a compilation error?
 
 ```ada
-type Entier1 is range 1 .. Integer'Last;
-type Entier2 is range 1 .. 100;
+type My_Int_1 is range 1 .. Integer'Last;
+type My_Int_2 is range 1 .. 100;
 
-V1 : Entier1 := 5;
-V2 : Entier2;
+V1 : My_Int_1 := 5;
+V2 : My_Int_2;
 V2 := V1;
 ```
 
-## Quizz 8: Is there a compilation error ?
+## Quizz 8: Is there a compilation error?
 
 ```ada
 type Enum is (E1, E2);
 type Enum2 is (E2, E3);
 ```
 
-## Quizz 9: Is there a compilation error ?
+## Quizz 9: Is there a compilation error?
 
 ```ada
 type Bit is (‘0’, ‘1’);
@@ -740,7 +742,7 @@ procedure Greet is
    Arr : My_Int_Array := (2, 3, 5, 7, 11);
 begin
    for I in Index loop
-      Put (My_Int’Image (Arr (I)));
+      Put (My_Int'Image (Arr (I)));
    end loop;
    New_Line;
 end Greet;
@@ -760,7 +762,7 @@ procedure Greet is
    --                    ^ Aggregate (array literal)
 begin
    for I in Index loop
-      Put (My_Int’Image (Arr (I)));
+      Put (My_Int'Image (Arr (I)));
    end loop;
    New_Line;
 end Greet;
@@ -779,7 +781,7 @@ procedure Greet is
    Tab : My_Int_Array := (2, 3, 5, 7, 11);
 begin
    for I in Index loop
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    end loop;
    New_Line;
 end Greet;
@@ -807,7 +809,7 @@ procedure Greet is
    --  Number of days in February
 begin
    for I in Month loop
-      Put_Line (My_Int’Image (Tab (I)));
+      Put_Line(My_Int'Image (Tab (I)));
    end loop;
 end Greet;
 ~~~
@@ -823,7 +825,7 @@ procedure Greet is
 begin
    Indexation
    for I in 2 .. 6 loop
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
       --                      ^ Indexation
       --                      ^ Will raise an exception when
       --                      I = 6
@@ -843,7 +845,7 @@ procedure Greet is
 begin
    for I in Integer range 1 .. 5 loop
    --       ^ We say that the type of I is Integer
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    --                         ^ Compile time error
    end loop;
    New_Line;
@@ -863,7 +865,7 @@ procedure Greet is
 begin
    for I in 1 .. 5 loop
    --       ^ Likewise
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    end loop;
    New_Line;
 end Greet;
@@ -881,7 +883,7 @@ procedure Greet is
 begin
    for I in Tab'Range loop
    --          ^ Gets the range of Tab
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    end loop;
    New_Line;
 end Greet;
@@ -906,8 +908,8 @@ procedure Greet is
    --               ^ Default value
    --  ^ Specify element by name of index
 begin
-   for I in Workload’Range loop
-      Put_Line (Integer’Image (Workload (I)));
+   for I in Workload'Range loop
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -928,8 +930,8 @@ procedure Greet is
    --  ^ More powerful association by name
    --  Here, no need to specify the bounds of the array
 begin
-   for I in Workload’Range loop
-      Put_Line (Integer’Image (Workload (I)));
+   for I in Workload'Range loop
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -1009,7 +1011,7 @@ procedure Greet is
    --  Initial value given by aggregate
 begin
    for I in Names'Range loop
-      Put_Line (Names (I));
+      Put_Line(Names (I));
    end loop;
 end Greet;
 ~~~
@@ -1071,8 +1073,8 @@ procedure Greet is
    Workload : constant Workload_Type :=
       (Monday .. Friday => 8, Friday => 7, Saturday | Sunday => 0);
 begin
-   for I in Workload’Range loop
-      Put_Line (Integer’Image (Workload (I)));
+   for I in Workload'Range loop
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ```
@@ -1129,10 +1131,10 @@ with Week;
 
 procedure Greet is
 begin
-   for I in Week.Workload’Range loop
+   for I in Week.Workload'Range loop
    --       ^ We reference items of the package by prefixing
    --         by package name
-      Put_Line (Integer’Image (Workload (I)));
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -1142,17 +1144,17 @@ end Greet;
 ~~~ada
 with Ada.Text_IO; use Ada.Text_IO;
 
-with Week; 
+with Week;
 use Week;
 --  Brings the content of the package in the current
 --  namespace
 
 procedure Greet is
 begin
-   for I in Workload’Range loop
+   for I in Workload'Range loop
    --       ^ We can reference items of the package directly
    --         now
-      Put_Line (Integer’Image (Workload (I)));
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -1247,7 +1249,7 @@ end Week;
 package Week is
    type Days is (Monday, Tuesday, Wednesday,
                  Thursday, Friday, Saturday, Sunday);
-   procedure Next_Day (Res : out Days; 
+   procedure Next_Day (Res : out Days;
    --                        ^ Mode out: not initialized at
    --                          the beginning, procedure body can
    --                          assign it. (Like a return value)
