@@ -523,11 +523,11 @@ begin
          when Saturday .. Sunday =>
             Put_Line ("Week end!");
 
-	 --  Completeness checking on enums
+         --  Completeness checking on enums
          when others =>
             Put_Line (“Hello on “ & Days’Image (I));
-	    --  'Image attribute, converts a value to a
-	    --  String
+            --  'Image attribute, converts a value to a
+            --  String
       end case;
    end loop;
 end Greet;
