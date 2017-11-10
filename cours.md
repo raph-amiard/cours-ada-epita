@@ -423,9 +423,9 @@ end Greet;
 ```ada
 V    : Integer;
 1V   : Integer;
-V_   : Integer; 
+V_   : Integer;
 _V   : Integer;
-V__1 : Integer; 
+V__1 : Integer;
 V_1  : Integer;
 ```
 
@@ -1144,7 +1144,7 @@ end Greet;
 ~~~ada
 with Ada.Text_IO; use Ada.Text_IO;
 
-with Week; 
+with Week;
 use Week;
 --  Brings the content of the package in the current
 --  namespace
@@ -1249,7 +1249,7 @@ end Week;
 package Week is
    type Days is (Monday, Tuesday, Wednesday,
                  Thursday, Friday, Saturday, Sunday);
-   procedure Next_Day (Res : out Days; 
+   procedure Next_Day (Res : out Days;
    --                        ^ Mode out: not initialized at
    --                          the beginning, procedure body can
    --                          assign it. (Like a return value)
