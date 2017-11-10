@@ -1,1 +1,1 @@
-pandoc -t beamer --latex-engine=xelatex --template=./default.beamer --highlight-style=zenburn -s -V theme=metropolis -V fontsize=9pt -V monofont="DejaVu Sans Mono" -V monofontoptions=Scale=0.9 cours-1.md -o cours-1.pdf
+pandoc -t beamer --latex-engine=xelatex --template=./default.beamer --highlight-style=zenburn -s -V theme=metropolis -V fontsize=9pt -V monofont="DejaVu Sans Mono" -V monofontoptions=Scale=0.9 cours.md -o cours.pdf
