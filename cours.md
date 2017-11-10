@@ -6,8 +6,10 @@
 
 ## Historique
 
-- Dans les années 70, le DOD souffre d’une explosion du nombre des langages utilisés
-- Il lance un concours international pour un langage qui répond à toutes ces exigences (1974)
+- Dans les années 70, le DOD souffre d’une explosion du nombre des langages
+  utilisés
+- Il lance un concours international pour un langage qui répond à toutes ces
+  exigences (1974)
 
 ---
 
