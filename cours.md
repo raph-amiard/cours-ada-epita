@@ -77,7 +77,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 --  Display a welcome message
 procedure Greet is
 begin
-    Put_Line ("Hello, world !");
+    Put_Line ("Hello, world!");
 end Greet;
 ```
 
@@ -259,7 +259,7 @@ end Greet;
 
 # Quizz: Imperative language
 
-## Quizz 1: Is there a compilation error ?
+## Quizz 1: Is there a compilation error?
 
 ```ada
 for I in 10 .. 1 loop
@@ -267,7 +267,7 @@ for I in 10 .. 1 loop
 end loop;
 ```
 
-## Quizz 2: Is there a compilation error ?
+## Quizz 2: Is there a compilation error?
 
 ```ada
 for I in reverse 1 .. 10 loop
@@ -275,7 +275,7 @@ for I in reverse 1 .. 10 loop
 end loop;
 ```
 
-## Quizz 3: Is there a compilation error ?
+## Quizz 3: Is there a compilation error?
 
 ```ada
 procedure Hello is
@@ -287,7 +287,7 @@ begin
 end Hello;
 ```
 
-## Quizz 4: Is there a compilation error ?
+## Quizz 4: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -302,7 +302,7 @@ begin
 end Greet;
 ```
 
-## Quizz 5: Is there a compilation error ?
+## Quizz 5: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -317,7 +317,7 @@ begin
 end Greet;
 ```
 
-## Quizz 6: Is there a compilation error ?
+## Quizz 6: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -332,7 +332,7 @@ begin
 end Greet;
 ```
 
-## Quizz 7: Is there a compilation error ?
+## Quizz 7: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -354,7 +354,7 @@ begin
 end Greet;
 ```
 
-## Quizz 8: Is there a compilation error ?
+## Quizz 8: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -375,7 +375,7 @@ begin
 end Greet;
 ```
 
-## Quizz 9: Is there a compilation error ?
+## Quizz 9: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -395,7 +395,7 @@ begin
 end Greet;
 ```
 
-## Quizz 10: Is there a compilation error ?
+## Quizz 10: Is there a compilation error?
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
@@ -416,7 +416,7 @@ begin
 end Greet;
 ```
 
-## Quizz 11: Which one is an error ?
+## Quizz 11: Which one is an error?
 
 ```ada
 V    : Integer;
@@ -431,7 +431,7 @@ V_1  : Integer;
 
 ## Question
 
-### What is a type ?
+### What is a type?
 
 ## Integers
 
@@ -655,32 +655,32 @@ end Greet;
 
 # Quizz: Types
 
-## Quizz 1: Is there a compilation error ?
+## Quizz 1: Is there a compilation error?
 
 ```ada
 type My_Int is range 1 .. 20.5;
 ```
 
-## Quizz 2: Is there a compilation error ?
+## Quizz 2: Is there a compilation error?
 
 ```ada
 type My_Int is range 1 .. 20.0;
 ```
 
-## Quizz 3: Is there a compilation error ?
+## Quizz 3: Is there a compilation error?
 
 ```ada
 A : Integer := 5;
 type My_Int is range A .. 20;
 ```
 
-## Quizz 4: Is there a compilation error ?
+## Quizz 4: Is there a compilation error?
 
 ```ada
 type My_Int is range 1 .. Integer'Last;
 ```
 
-## Quizz 5: Is there a compilation error ?
+## Quizz 5: Is there a compilation error?
 
 ```ada
 type My_Int_1 is range 1 .. Integer'Last;
@@ -688,36 +688,36 @@ type My_Int_2 is range Integer'First .. 0;
 type My_Int_3 is range My_Int_2'First .. My_Int_2'Last;
 ```
 
-## Quizz 6: Is there a compilation error ?
+## Quizz 6: Is there a compilation error?
 
 ```ada
-type Entier1 is range 1 .. Integer'Last;
-subtype Entier2 is Entier1 range 1 .. 100;
+type My_Int_1 is range 1 .. Integer'Last;
+subtype My_Int_2 is My_Int_1 range 1 .. 100;
 
-V1 : Entier1 := 5;
-V2 : Entier2;
+V1 : My_Int_1 := 5;
+V2 : My_Int_2;
 V2 := V1;
 ```
 
-## Quizz 7: Is there a compilation error ?
+## Quizz 7: Is there a compilation error?
 
 ```ada
-type Entier1 is range 1 .. Integer'Last;
-type Entier2 is range 1 .. 100;
+type My_Int_1 is range 1 .. Integer'Last;
+type My_Int_2 is range 1 .. 100;
 
-V1 : Entier1 := 5;
-V2 : Entier2;
+V1 : My_Int_1 := 5;
+V2 : My_Int_2;
 V2 := V1;
 ```
 
-## Quizz 8: Is there a compilation error ?
+## Quizz 8: Is there a compilation error?
 
 ```ada
 type Enum is (E1, E2);
 type Enum2 is (E2, E3);
 ```
 
-## Quizz 9: Is there a compilation error ?
+## Quizz 9: Is there a compilation error?
 
 ```ada
 type Bit is (‘0’, ‘1’);
