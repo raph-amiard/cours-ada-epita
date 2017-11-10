@@ -406,7 +406,7 @@ procedure Greet is
 begin
    loop
       case I is
-         when Integer’First .. 1 =>
+         when Integer'First .. 1 =>
             Put_Line("Starting...");
          when 1 .. 4 =>
             Put_Line("Hello");
@@ -480,7 +480,7 @@ end Greet;
 
 ```ada
 procedure Greet is
-   A : Integer := Integer’Last;
+   A : Integer := Integer'Last;
    B : Integer;
 begin
    B := A + 5;
@@ -525,7 +525,7 @@ begin
 
          --  Completeness checking on enums
          when others =>
-            Put_Line(“Hello on “ & Days’Image (I));
+            Put_Line("Hello on " & Days'Image (I));
             --  'Image attribute, converts a value to a
             --  String
       end case;
@@ -549,7 +549,7 @@ procedure Greet is
 begin
    --  Not correct: types mismatch
    Dist_Us := Dist_Eu * 1609 / 1000;
-   Put_Line(Miles’Image (Dist_Us));
+   Put_Line(Miles'Image (Dist_Us));
 end Greet;
 ```
 
@@ -567,7 +567,7 @@ begin
    --         ^ Type conversion, from Meters to Miles
    --  Now the code is correct
 
-   Put_Line(Miles’Image (Dist_Us));
+   Put_Line(Miles'Image (Dist_Us));
 end;
 ```
 
@@ -598,7 +598,7 @@ begin
    C := '?';
    Put_Line("""Ascii"" code of '" & C & "' is"
    --         ^ Use "" to insert quote in a string
-             & Integer’Image (Character'Pos (C)));
+             & Integer'Image (Character'Pos (C)));
    --                                  ^ 'Pos converts a
    --                                     value to its position
 
@@ -626,7 +626,7 @@ begin
          when Weekend_Days =>
             Put_Line("Week end!");
          when others =>
-            Put_Line(“Hello on “ & Days’Image (I));
+            Put_Line("Hello on " & Days'Image (I));
       end case;
    end loop;
 end Greet;
@@ -742,7 +742,7 @@ procedure Greet is
    Arr : My_Int_Array := (2, 3, 5, 7, 11);
 begin
    for I in Index loop
-      Put (My_Int’Image (Arr (I)));
+      Put (My_Int'Image (Arr (I)));
    end loop;
    New_Line;
 end Greet;
@@ -762,7 +762,7 @@ procedure Greet is
    --                    ^ Aggregate (array literal)
 begin
    for I in Index loop
-      Put (My_Int’Image (Arr (I)));
+      Put (My_Int'Image (Arr (I)));
    end loop;
    New_Line;
 end Greet;
@@ -781,7 +781,7 @@ procedure Greet is
    Tab : My_Int_Array := (2, 3, 5, 7, 11);
 begin
    for I in Index loop
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    end loop;
    New_Line;
 end Greet;
@@ -809,7 +809,7 @@ procedure Greet is
    --  Number of days in February
 begin
    for I in Month loop
-      Put_Line(My_Int’Image (Tab (I)));
+      Put_Line(My_Int'Image (Tab (I)));
    end loop;
 end Greet;
 ~~~
@@ -825,7 +825,7 @@ procedure Greet is
 begin
    Indexation
    for I in 2 .. 6 loop
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
       --                      ^ Indexation
       --                      ^ Will raise an exception when
       --                      I = 6
@@ -845,7 +845,7 @@ procedure Greet is
 begin
    for I in Integer range 1 .. 5 loop
    --       ^ We say that the type of I is Integer
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    --                         ^ Compile time error
    end loop;
    New_Line;
@@ -865,7 +865,7 @@ procedure Greet is
 begin
    for I in 1 .. 5 loop
    --       ^ Likewise
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    end loop;
    New_Line;
 end Greet;
@@ -883,7 +883,7 @@ procedure Greet is
 begin
    for I in Tab'Range loop
    --          ^ Gets the range of Tab
-      Put (My_Int’Image (Tab (I)));
+      Put (My_Int'Image (Tab (I)));
    end loop;
    New_Line;
 end Greet;
@@ -908,8 +908,8 @@ procedure Greet is
    --               ^ Default value
    --  ^ Specify element by name of index
 begin
-   for I in Workload’Range loop
-      Put_Line(Integer’Image (Workload (I)));
+   for I in Workload'Range loop
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -930,8 +930,8 @@ procedure Greet is
    --  ^ More powerful association by name
    --  Here, no need to specify the bounds of the array
 begin
-   for I in Workload’Range loop
-      Put_Line(Integer’Image (Workload (I)));
+   for I in Workload'Range loop
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -1073,8 +1073,8 @@ procedure Greet is
    Workload : constant Workload_Type :=
       (Monday .. Friday => 8, Friday => 7, Saturday | Sunday => 0);
 begin
-   for I in Workload’Range loop
-      Put_Line(Integer’Image (Workload (I)));
+   for I in Workload'Range loop
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ```
@@ -1131,10 +1131,10 @@ with Week;
 
 procedure Greet is
 begin
-   for I in Week.Workload’Range loop
+   for I in Week.Workload'Range loop
    --       ^ We reference items of the package by prefixing
    --         by package name
-      Put_Line(Integer’Image (Workload (I)));
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -1151,10 +1151,10 @@ use Week;
 
 procedure Greet is
 begin
-   for I in Workload’Range loop
+   for I in Workload'Range loop
    --       ^ We can reference items of the package directly
    --         now
-      Put_Line(Integer’Image (Workload (I)));
+      Put_Line(Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
