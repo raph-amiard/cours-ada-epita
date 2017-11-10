@@ -232,6 +232,12 @@ $endfor$
 $if(title)$
 \title{$title$}
 $endif$
+\logo{%
+    \includegraphics[height=0.5cm,keepaspectratio]{adacore.png}%
+    \hspace{300pt}
+    \vspace{-23pt}
+}
+
 $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
