@@ -1609,4 +1609,470 @@ end;
 ## Records
 
 ```ada
+type Date is record
+   --  The following declarations are components of the record
+   Day   : Integer range 1 .. 31;
+   Month : Month_Name;
+   Year  : Integer range 1 .. 3000; --  You can add custom constraints on fields
+end record;
+```
+
+## Records - default values
+
+```ada
+type Date is record
+   Day   : Integer range 1 .. 31;
+   Month : Month_Name := January;
+
+   --  This component has a default value
+   Year  : Integer range 1 .. 3000 := 2012;
+   --                                 ^ Default value
+end record;
+```
+
+## Records - Literals
+
+```ada
+Today    : Date := (31, November, 2012);
+Birthday : Date := (Day => 30, Month => February, Year => 2010);
+--                  ^ By name
+```
+
+## Records - Selection
+
+```ada
+Today.Day := 29;
+```
+
+## Access types (pointers)
+
+```ada
+--  Declare an access type
+type Date_Acc is access Date;
+
+D : Date_Acc;
+D := null;
+--   ^ Literal for "access to nothing"
+```
+
+## Dereferencing
+
+```ada
+type Date_Acc is access Date;
+D : Date_Acc;
+
+Today : Date := D.all;  --  Access derefence
+J     : Day := D.Day
+--             ^ Implicit dereference for record and array components
+--               Equivalent to D.all.day
+```
+
+## Allocation (by type)
+
+```ada
+D : Date_Acc := new Date;  --  Allocation (using default values)
+```
+
+## Allocation (by type)
+
+```ada
+type String_Acc is access String;
+--                        ^ Access to unconstrained array type
+Msg : String_Acc;
+--    ^ Default value is null
+
+Buffer : String_Acc := new String (1 .. 10);
+--                                ^ Constraint required
+```
+
+## Allocation (by expression)
+
+```ada
+D   : Date_Acc := new Date'(30, November, 2011);
+Msg : String_Acc := new String'("Hello");
+```
+
+## Mutually recursive types
+
+
+```ada
+type Node;
+--  This is an incomplete type declaration, it must be
+--  completed in the same declarative region.
+
+type Node_Acc is access Node;
+
+type Node is record
+   Content    : Natural;
+   Prev, Next : Node_Acc;
+end record;
+```
+
+## More about records
+
+```ada
+Max_Len : constant Natural := Compute_Max_Len;
+--                            ^ Not known at compile time
+
+type Person is record
+   First_Name : String (1 .. Max_Len);
+   Last_Name  : String (1 .. Max_Len);
+end record;
+```
+
+## Records with discriminant
+
+```ada
+type Person (Max_Len : Natural) is record
+--           ^ Discriminant. Cannot be modified once initialized.
+   First_Name : String (1 .. Max_Len);
+   Last_Name  : String (1 .. Max_Len);
+end record;
+--  Person is an indefinite type (like an array)
+```
+
+## Records with variant
+
+```ada
+type Node_Acc is access Node;
+
+type Op_Kind is (Bin_Op, Un_Op);
+--  A regular enum
+
+type Node (Op : Op_Kind) is record
+--         ^ The discriminant is an enum
+   Id : Natural;
+   case Op is
+      when Un_Op =>
+         Operand : Node_Acc;
+      when Bin_Op =>
+         Left, Right : Node_Acc;
+      --  Those fields only exist when Op is Bin_Op
+   end case;
+   --  Variant part. Only one, at the end of the record
+   --  definition
+end record;
+```
+
+# Quizz
+
+## Quizz 1: Is there a compilation error?
+
+
+```ada
+Buf : String (1 .. 10);
+...
+Buf (2 .. 4) := "Ab";
+```
+
+## Quizz 2: Is there a compilation error?
+
+```ada
+type Person (Max_Len : Natural) is record
+   First_Name : String (1 .. Max_Len);
+   Last_Name  : String (1 .. Max_Len);
+end record;
+
+A : Person;
+```
+
+## Quizz 3: Is there a compilation error?
+
+```ada
+type Person (Max_Len : Natural) is record
+   Name : String (1 .. Max_Len);
+end record;
+
+A : Person (20);
+```
+
+## Quizz 4: Is there a compilation error?
+
+```ada
+type Person (Max_Len : Natural) is record
+   Name : String (1 .. Max_Len);
+end record;
+
+A : Person := Person’(6, "Pierre");
+```
+
+## Quizz 5: Is there a compilation error?
+
+```ada
+type Person (Max_Len : Natural) is record
+   Name : String (1 .. Max_Len);
+end record;
+
+A : Person := Person’(20, "Pierre");
+```
+
+## Quizz 6: Is there a compilation error?
+
+```ada
+type Date1_Acc is access Date;
+type Date2_Acc is access Date;
+
+D1 : Date1_Acc;
+D2 : Date2_Acc;
+
+D1 := D2;
+```
+
+## Quizz 7: Is there a compilation error?
+
+```ada
+type Date_Acc is access Date;
+
+D1 : Date_Acc := new Date;
+D2 : Date_Acc;
+
+D1 := D2;
+```
+
+## Quizz 8: Is there a compilation error?
+
+```ada
+type String_Acc is access String;
+
+S : String_Acc := new String'("Hello");
+C : Character;
+
+C := S.all (0);
+```
+
+## Quizz 9: Is there a compilation error?
+
+```ada
+type String_Acc is access String;
+S : String_Acc := new String'("Hello");
+C : Character;
+
+C := S.all (1);
+```
+
+## Quizz 10: Is there a compilation error?
+
+```ada
+type String_Acc is access String;
+S : String_Acc := new String'("Hello");
+C : Character;
+
+C := S (1);
+```
+
+## Quizz 11: Is there a compilation error?
+
+```ada
+type Node;
+type Node_Acc is access Node;
+type Op_Kind is (Bin_Op, Un_Op);
+
+type Node (Op : Op_Kind) is record
+   Id : Natural;
+   case Op is
+      when Un_Op =>
+         Operand : Node_Acc;
+      when Bin_Op =>
+         Left, Right : Node_Acc;
+   end case;
+end record;
+
+N : Node (Un_Op);
+```
+
+## Quizz 12: Is there a compilation error?
+
+```ada
+type Node;
+type Node_Acc is access Node;
+type Op_Kind is (Bin_Op, Un_Op);
+
+type Node (Op : Op_Kind) is record
+   Id : Natural;
+   case Op is
+      when Un_Op =>
+         Operand : Node_Acc;
+      when Bin_Op =>
+         Left, Right : Node_Acc;
+   end case;
+end record;
+
+N : Node := (Un_Op, 2, null);
+```
+
+## Quizz 13: Is there a compilation error?
+
+```ada
+type Node;
+type Node_Acc is access Node;
+type Op_Kind is (Bin_Op, Un_Op);
+
+type Node (Op : Op_Kind) is record
+   Id : Natural;
+   case Op is
+      when Un_Op =>
+         Operand : Node_Acc;
+      when Bin_Op =>
+         Left, Right : Node_Acc;
+   end case;
+end record;
+
+N : Node (Un_Op);
+
+N.Left.Id := 12;
+```
+
+## Quizz 14: Is there a compilation error?
+
+```ada
+type Node;
+type Node_Acc is access Node;
+type Op_Kind is (Bin_Op, Un_Op);
+
+type Node (Op : Op_Kind) is record
+   Id : Natural;
+   case Op is
+      when Un_Op =>
+         Operand : Node_Acc;
+      when Bin_Op =>
+         Left, Right : Node_Acc;
+   end case;
+end record;
+
+N : Node_Acc := ...
+
+Put_Line (N.Left.Op'Image);
+```
+
+# Privacy
+
+## Private part
+
+```ada
+package Stacks is
+   procedure Hello;
+
+private
+
+   procedure Hello2;
+   --  Not visible from external units
+end Stacks;
+```
+
+## Abstract data types: Declaration
+
+```ada
+package Stacks is
+   type Stack is private;
+   --  Declare a private type: You cannot depend on its
+   --  implementation. You can only assign and test for
+   --  equality.
+
+   procedure Push (S : in out Stack; Val : Integer);
+   procedure Pop (S : in out Stack; Val : out Integer);
+private
+
+   subtype Stack_Index is Natural range 1 .. 10;
+   type Content_Type is array (Stack_Index) of Natural;
+
+   type Stack is record
+      Top : Stack_Index;
+      Content : Content_Type;
+   end record;
+end Stacks;
+```
+
+## Abstract data types: vocabulary
+
+```ada
+package Stacks is
+   type Stack is private;
+   --  Partial view
+
+   procedure Push (S : in out Stack; Val : Integer);
+   procedure Pop (S : in out Stack; Val : out Integer);
+private
+
+   subtype Stack_Index is Natural range 1 .. 10;
+   type Content_Type is array (Stack_Index) of Natural;
+
+   type Stack is record
+      Top     : Stack_Index;
+      Content : Content_Type;
+   --  Full view
+   end record;
+end Stacks;
+```
+
+## Abstract data types
+
+```ada
+--  No need to read the private part to use the package
+package Stacks is
+   type Stack is private;
+
+   procedure Push (S : in out Stack; Val : Integer);
+   procedure Pop (S : in out Stack; Val : out Integer);
+private
+   ...
+end Stacks;
+```
+
+```ada
+--  Example of use
+with Stacks; use Stacks;
+
+procedure Test_Stack is
+   S : Stack;
+   Res : Integer;
+begin
+   Push (S, 5);
+   Push (S, 7);
+   Pop (S, Res);
+end Test_Stack;
+```
+
+## Limited types
+
+```ada
+package Stacks is
+   type Stack is limited private;
+   --  Limited type. Cannot assign nor compare.
+
+   procedure Push (S : in out Stack; Val : Integer);
+   procedure Pop (S : in out Stack; Val : out Integer);
+private
+   subtype Stack_Index is Natural range 1 .. 10;
+   type Content_Type is array (Stack_Index) of Natural;
+
+   type Stack is limited record
+      Top     : Stack_Index;
+      Content : Content_Type;
+   end record;
+end Stacks;
+```
+
+## Limited types
+
+```ada
+package Stacks is
+   type Stack is limited private;
+   ...
+private
+   type Stack is record  -- Full view is not limited
+      ...
+   end record;
+end Stacks;
+```
+
+```ada
+package Stacks is
+   type Stack is limited private;
+   ...
+private
+   ...
+   type Stack is limited record -- Full view is limited
+      ...
+   end record;
+end Stacks;
 ```
