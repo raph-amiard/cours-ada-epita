@@ -1575,3 +1575,38 @@ package body Pkg2 is
    end Foo;
 end Pkg2;
 ~~~
+
+# More about types
+
+## Array
+
+~~~ada
+Len : Natural := F (5);
+
+--  The size of this array is not known at compile time. But the bounds are
+--  fixed.
+Buf : String (1 .. Len);
+
+--  This does not change the size of the array.
+Len := 3;
+~~~
+
+## Array slices
+
+~~~ada
+procedure Main is
+    Buf : String := "Hello ...";
+
+    Full_Name : "Raphael Amiard";
+begin
+    Buf (7 .. 9) := "Bob";
+    Put_Line (Buf);  --  Prints "Hello Bob"
+
+    Put_Line ("Hi " & Full_Name (1 .. 7)); --  Prints "Hi Raphael"
+end;
+~~~
+
+## Records
+
+~~~ada
+~~~
