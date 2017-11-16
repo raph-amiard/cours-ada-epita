@@ -79,7 +79,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 --  Display a welcome message
 procedure Greet is
 begin
-    Put_Line("Hello, world!");
+    Put_Line ("Hello, world!");
 end Greet;
 ```
 
@@ -190,9 +190,9 @@ begin
       if I = 5 then
          exit;
       elsif I = 0 then
-         Put_Line("Starting...");
+         Put_Line ("Starting...");
       else
-         Put_Line("Hello, World!");
+         Put_Line ("Hello, World!");
       end if;
       I := I + 1;
    end loop;
@@ -247,12 +247,12 @@ begin
       -- Expression must be of a discrete type. All the
       -- values must be covered.
       case I is
-         when 0 => Put_Line("Starting...");
-         when 3 .. 4 => Put_Line("Hello");
+         when 0 => Put_Line ("Starting...");
+         when 3 .. 4 => Put_Line ("Hello");
          when 7 | 9 => exit;
          -- ‘when others’ must be the last one and alone (if
          -- present)
-         when others => Put_Line("Hello, World!");
+         when others => Put_Line ("Hello, World!");
       end case;
       I := I + 1;
    end loop;
@@ -284,7 +284,7 @@ procedure Hello is
    I : Integer;
 begin
    for I in 1 .. 10 loop
-      Put_Line("Hello, World!");
+      Put_Line ("Hello, World!");
    end loop;
 end Hello;
 ```
@@ -313,7 +313,7 @@ procedure Greet is
     I : Integer := 2;
 begin
     while i < 10 loop
-        Put_Line("Hello, World!");
+        Put_Line ("Hello, World!");
         i := i + 1;
     end loop;
 end Greet;
@@ -346,9 +346,9 @@ begin
          exit;
       else
          if I = 0 then
-            Put_Line("Starting...");
+            Put_Line ("Starting...");
          else
-            Put_Line("Hello, World!");
+            Put_Line ("Hello, World!");
          end if;
       end if;
       I := I + 1;
@@ -366,9 +366,9 @@ begin
    loop
       case I is
          when 0 =>
-            Put_Line("Starting...");
+            Put_Line ("Starting...");
          when 1 .. 4 =>
-            Put_Line("Hello");
+            Put_Line ("Hello");
          when 5 =>
             exit;
       end case;
@@ -386,9 +386,9 @@ begin
    loop
       case I is
          when 0 =>
-            Put_Line("Starting...");
+            Put_Line ("Starting...");
          when 1 .. 4 =>
-            Put_Line("Hello");
+            Put_Line ("Hello");
          when others =>
             exit;
       end case;
@@ -407,9 +407,9 @@ begin
    loop
       case I is
          when Integer'First .. 1 =>
-            Put_Line("Starting...");
+            Put_Line ("Starting...");
          when 1 .. 4 =>
-            Put_Line("Hello");
+            Put_Line ("Hello");
          when others =>
             exit;
       end case;
@@ -468,7 +468,7 @@ begin
       if I = My_Int'Last then
       --           ^ Higher bound of the type
       --  'First is the lower bound
-         Put_Line("Bye");
+         Put_Line ("Bye");
       else
          Put_Line("Hello, World!");
       end if;
@@ -521,11 +521,11 @@ begin
    for I in Days loop
       case I is
          when Saturday .. Sunday =>
-            Put_Line("Week end!");
+            Put_Line ("Week end!");
 
          --  Completeness checking on enums
          when others =>
-            Put_Line("Hello on " & Days'Image (I));
+            Put_Line ("Hello on " & Days'Image (I));
             --  'Image attribute, converts a value to a
             --  String
       end case;
@@ -549,7 +549,7 @@ procedure Greet is
 begin
    --  Not correct: types mismatch
    Dist_Us := Dist_Eu * 1609 / 1000;
-   Put_Line(Miles'Image (Dist_Us));
+   Put_Line (Miles'Image (Dist_Us));
 end Greet;
 ```
 
@@ -567,7 +567,7 @@ begin
    --         ^ Type conversion, from Meters to Miles
    --  Now the code is correct
 
-   Put_Line(Miles'Image (Dist_Us));
+   Put_Line (Miles'Image (Dist_Us));
 end;
 ```
 
@@ -596,7 +596,7 @@ procedure Greet is
    C : Character;
 begin
    C := '?';
-   Put_Line("""Ascii"" code of '" & C & "' is"
+   Put_Line ("""Ascii"" code of '" & C & "' is"
    --         ^ Use "" to insert quote in a string
              & Integer'Image (Character'Pos (C)));
    --                                  ^ 'Pos converts a
@@ -624,9 +624,9 @@ begin
          --  Just like a type, a subtype can be used as a
          --  range
          when Weekend_Days =>
-            Put_Line("Week end!");
+            Put_Line ("Week end!");
          when others =>
-            Put_Line("Hello on " & Days'Image (I));
+            Put_Line ("Hello on " & Days'Image (I));
       end case;
    end loop;
 end Greet;
@@ -809,7 +809,7 @@ procedure Greet is
    --  Number of days in February
 begin
    for I in Month loop
-      Put_Line(My_Int'Image (Tab (I)));
+      Put_Line (My_Int'Image (Tab (I)));
    end loop;
 end Greet;
 ~~~
@@ -909,7 +909,7 @@ procedure Greet is
    --  ^ Specify element by name of index
 begin
    for I in Workload'Range loop
-      Put_Line(Integer'Image (Workload (I)));
+      Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -931,7 +931,7 @@ procedure Greet is
    --  Here, no need to specify the bounds of the array
 begin
    for I in Workload'Range loop
-      Put_Line(Integer'Image (Workload (I)));
+      Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -1011,7 +1011,7 @@ procedure Greet is
    --  Initial value given by aggregate
 begin
    for I in Names'Range loop
-      Put_Line(Names (I));
+      Put_Line (Names (I));
    end loop;
 end Greet;
 ~~~
@@ -1074,7 +1074,7 @@ procedure Greet is
       (Monday .. Friday => 8, Friday => 7, Saturday | Sunday => 0);
 begin
    for I in Workload'Range loop
-      Put_Line(Integer'Image (Workload (I)));
+      Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ```
@@ -1134,7 +1134,7 @@ begin
    for I in Week.Workload'Range loop
    --       ^ We reference items of the package by prefixing
    --         by package name
-      Put_Line(Integer'Image (Workload (I)));
+      Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
@@ -1154,7 +1154,7 @@ begin
    for I in Workload'Range loop
    --       ^ We can reference items of the package directly
    --         now
-      Put_Line(Integer'Image (Workload (I)));
+      Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
 ~~~
