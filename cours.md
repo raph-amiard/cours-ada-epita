@@ -609,7 +609,7 @@ end Greet;
 
 ## Subtypes
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Greet is
    type Days is (Monday, Tuesday, Wednesday, Thursday,
@@ -630,13 +630,13 @@ begin
       end case;
    end loop;
 end Greet;
-~~~
+```
 
 ## A subtype doesn't define a type
 
 - All subtypes are of the same type.
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -653,7 +653,7 @@ begin
    --         ^ Wrong value for the subtype
    --  Compiles, but exception at runtime
 end Greet;
-~~~
+```
 
 # Quizz: Types
 
@@ -729,7 +729,7 @@ type Bit is (‘0’, ‘1’);
 
 ## Array type declaration
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -746,11 +746,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Array type declaration
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -766,11 +766,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Array index
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -785,11 +785,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Array index
 
-~~~ada
+```ada
 procedure Greet is
    type My_Int is range 1 .. 31;
    type Month is (Jan, Feb, Mar, Apr, May, Jun,
@@ -812,11 +812,11 @@ begin
       Put_Line (My_Int'Image (Tab (I)));
    end loop;
 end Greet;
-~~~
+```
 
 ## Indexation
 
-~~~ada
+```ada
 procedure Greet is
    type My_Int is range 0 .. 1000;
    type Index is range 1 .. 5;
@@ -832,11 +832,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Indexation
 
-~~~ada
+```ada
 procedure Greet is
    type My_Int is range 0 .. 1000;
    type Index is range 1 .. 5;
@@ -850,11 +850,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Shortcut for index
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -869,11 +869,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Range attribute
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -887,11 +887,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Unconstrained arrays
 
-~~~ada
+```ada
 procedure Greet is
    type Days is (Monday, Tuesday, Wednesday,
       Thursday, Friday, Saturday, Sunday);
@@ -912,11 +912,11 @@ begin
       Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
-~~~
+```
 
 ## Declaring arrays
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -934,11 +934,11 @@ begin
       Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
-~~~
+```
 
 ## Predefined array type: String
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -952,11 +952,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Predefined array type: String
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -972,11 +972,11 @@ begin
    end loop;
    New_Line;
 end Greet;
-~~~
+```
 
 ## Declaring arrays
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -994,11 +994,11 @@ procedure Greet is
 begin
    null;
 end Greet;
-~~~
+```
 
 ## Declaring arrays
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Greet is
@@ -1014,16 +1014,16 @@ begin
       Put_Line (Names (I));
    end loop;
 end Greet;
-~~~
+```
 
 ## Declaring arrays
 
-~~~ada
+```ada
 --  Those two declarations produce the same thing
 A : String := "Hello World";
 B : String (1 .. 11) := ('H', 'e', 'l', 'l', 'o', ' ',
                          'W', 'o', 'r', 'l', 'd');
-~~~
+```
 
 # Quizz: Arrays
 
@@ -1082,10 +1082,10 @@ end Greet;
 
 ## Packages
 
-~~~ada
+```ada
 package Week is
 end Week;
-~~~
+```
 
 Packages:
 
@@ -1096,7 +1096,7 @@ Packages:
 
 ## Packages
 
-~~~ada
+```ada
 package Week is
 
    --  This is a declarative part. You can put only
@@ -1108,7 +1108,7 @@ package Week is
    Workload : constant Workload_Type :=
       (Monday .. Friday => 8, Friday => 7, Saturday | Sunday => 0);
 end Week;
-~~~
+```
 
 Different from header files in C/C++ because:
 
@@ -1122,7 +1122,7 @@ Different from header files in C/C++ because:
 
 ## With-ing a package
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 with Week;
@@ -1137,11 +1137,11 @@ begin
       Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
-~~~
+```
 
 ## Using a package
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 with Week;
@@ -1157,11 +1157,11 @@ begin
       Put_Line (Integer'Image (Workload (I)));
    end loop;
 end Greet;
-~~~
+```
 
 ## Package body
 
-~~~ada
+```ada
 package body Week is
 
    --  The body contains additional declarations, not
@@ -1178,7 +1178,7 @@ package body Week is
    --  This is a function. It has a return statement
    --  (mandatory for functions)
 end Week;
-~~~
+```
 
 - With GNAT, packages bodies go in .adb files (here, it
     would be week.adb)
@@ -1187,7 +1187,7 @@ end Week;
 
 ## Subprograms
 
-~~~ada
+```ada
 with Ada.Text_IO; use Ada.Text_IO;
 
 --  Here we declare and define a procedure without
@@ -1196,11 +1196,11 @@ procedure Greet is
 begin
    Put_Line("Hello, World!");
 end Greet;
-~~~
+```
 
 ## Subprograms
 
-~~~ada
+```ada
 package Week is
    type Days is (Monday, Tuesday, Wednesday,
                  Thursday, Friday, Saturday, Sunday);
@@ -1209,11 +1209,11 @@ package Week is
    --  We declare (but don't define) a function with one
    --  parameter, returning a Natural integer
 end Week;
-~~~
+```
 
 ## Subprograms
 
-~~~ada
+```ada
 package Week is
    type Days is (Monday, Tuesday, Wednesday,
                  Thursday, Friday, Saturday, Sunday);
@@ -1224,11 +1224,11 @@ package Week is
    --                               even indefinite ones
    --           ^ Default value for parameter
 end Week;
-~~~
+```
 
 ## Subprograms
 
-~~~ada
+```ada
 package body Week is
    --  Implementation of the Get_Day_Name function
    function Get_Day_Name (Day : Days := Monday) return String is
@@ -1241,11 +1241,11 @@ package body Week is
       end case;
    end Get_Day_Name;
 end Week;
-~~~
+```
 
 ## Parameters modes
 
-~~~ada
+```ada
 package Week is
    type Days is (Monday, Tuesday, Wednesday,
                  Thursday, Friday, Saturday, Sunday);
@@ -1257,11 +1257,11 @@ package Week is
    --                        ^ No mode: defaults to "in",
    --                          which is like a constant
 end Week;
-~~~
+```
 
 ## Parameters modes
 
-~~~ada
+```ada
 --                You can declare several params at the same
 --              ∨ time
 procedure Swap (A, B : in out Integer)
@@ -1280,11 +1280,11 @@ begin
    return;
    --  Return statement. Optional for procedures
 end Swap;
-~~~
+```
 
 ## Subprogram call
 
-~~~ada
+```ada
 procedure Test_Swap
 is
    X, Y : Integer;
@@ -1298,11 +1298,11 @@ begin
    Swap (B => X, A => Y);
    --    ^ You can reverse the order
 end Test_Swap;
-~~~
+```
 
 ## Function calls
 
-~~~ada
+```ada
 function Double (I : Integer) return Integer is
 begin
    return I * 2;
@@ -1317,11 +1317,11 @@ begin
 
    return Res;
 end Quadruple;
-~~~
+```
 
 ## Function calls
 
-~~~ada
+```ada
 function Pi return Float is
 --          ^ No parameters, no parentheses
 begin
@@ -1331,11 +1331,11 @@ end Pi;
 A : Float := Pi;
 --           ^ No parameters, no parentheses at call site
 --             either!
-~~~
+```
 
 ## Mutually recursive subprograms
 
-~~~ada
+```ada
 procedure Compute_A (V : Natural);
 --  Forward declaration of Compute_A
 
@@ -1354,11 +1354,11 @@ begin
    -- ^ Call to Compute_B
    end if;
 end Compute_A;
-~~~
+```
 
 ## Nested subprograms
 
-~~~ada
+```ada
 function Quadruple (I : Integer) return Integer is
 
    function Double (I : Integer) return Integer is
@@ -1370,7 +1370,7 @@ function Quadruple (I : Integer) return Integer is
 begin
    return Double (Double (I));
 end Quadruple;
-~~~
+```
 
 ## Quizz: Packages & subprograms
 
@@ -1505,7 +1505,7 @@ end Main;
 ```
 ## Quizz 12: Is there a compilation error ?
 
-~~~ada
+```ada
 
 --  pkg1.ads
 package Pkg1 is
@@ -1526,11 +1526,11 @@ package body Pkg2 is
       Proc;
    end Foo;
 end Pkg2;
-~~~
+```
 
 ## Quizz 13: Is there a compilation error ?
 
-~~~ada
+```ada
 --  pkg1.ads
 package Pkg1 is
 procedure Proc;
@@ -1548,11 +1548,11 @@ with Pkg1; use Pkg1;
 package body Pkg2 is
    ...
 end Pkg2;
-~~~
+```
 
 ## Quizz 14: Is there a compilation error ?
 
-~~~ada
+```ada
 --  pkg1.ads
 package Pkg1 is
    procedure Proc;
@@ -1574,13 +1574,13 @@ package body Pkg2 is
       Proc;
    end Foo;
 end Pkg2;
-~~~
+```
 
 # More about types
 
 ## Array
 
-~~~ada
+```ada
 Len : Natural := F (5);
 
 --  The size of this array is not known at compile time. But the bounds are
@@ -1589,11 +1589,11 @@ Buf : String (1 .. Len);
 
 --  This does not change the size of the array.
 Len := 3;
-~~~
+```
 
 ## Array slices
 
-~~~ada
+```ada
 procedure Main is
     Buf : String := "Hello ...";
 
@@ -1604,9 +1604,9 @@ begin
 
     Put_Line ("Hi " & Full_Name (1 .. 7)); --  Prints "Hi Raphael"
 end;
-~~~
+```
 
 ## Records
 
-~~~ada
-~~~
+```ada
+```
