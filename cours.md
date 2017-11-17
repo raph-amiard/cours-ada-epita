@@ -1565,9 +1565,9 @@ package Pkg2 is
    ...
 end Pkg2;
 
+--  pkg2.adb
 use Pkg1;
 
---  pkg2.adb
 package body Pkg2 is
    procedure Foo is
    begin
