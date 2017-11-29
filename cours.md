@@ -3239,5 +3239,165 @@ begin
 end;
 ```
 
+# Interfacing
+
+## Type convention
+
+```ada
+type Enum is (A, B, C);
+pragma Convention (C, Enum);
+--                 ^ Use C convention for Enum
+```
+
+## Type convention
 
 
+```ada
+with Interfaces.C; use Interfaces.C;
+--  Provides C-compatible declarations
+
+type C_Type is record
+   A : int;
+   B : long;
+   C : unsigned;
+end record;
+```
+
+## Foreign subprograms
+
+```c
+int my_func (int a);
+```
+
+```ada
+with Interfaces.C; use Interfaces.C;
+
+function my_func (a : int) return int
+  with Import        => True,
+       Convention    => C;
+--  Imports function 'my_func' from C. You can now call it from Ada.
+```
+
+## Foreign subprograms
+
+```c
+void my___func (int a);
+```
+
+```ada
+with Interfaces.C; use Interfaces.C;
+
+procedure my_func (a : int)
+  with Import        => True,
+       Convention    => C,
+       External_Name => "my___func";
+--  Imports function 'my___func' from C.
+```
+
+## Foreign subprograms
+
+```ada
+-- c_api.ads
+with Interfaces.C; use Interfaces.C;
+
+package C_API is
+   procedure My_Func (a : int)
+     with Export => True, Convention => C, External_Name => "my_func";
+end C_API;
+
+-- c_api.adb
+package body C_API is
+   procedure My_Func (a : int) is
+   begin
+      Put_Line (int'Image (a));
+   end My_Func;
+end C_API;
+```
+
+```c
+extern void my_func (int a);
+```
+
+## Foreign variables
+
+```c
+extern int my_var;
+```
+
+```ada
+with Interfaces.C; use Interfaces.C;
+
+my_var : int;
+pragma Export (C, my_var);
+```
+
+## Multi-language project
+
+```ada
+project Multilang is
+
+   for Languages use ("ada", "c");
+
+   for Source_Dirs use ("src");
+   for Main use ("main.adb");
+   for Object_Dir use "obj";
+
+end Multilang;
+```
+
+# Quizz
+
+## Quizz 1: Is there a compilation error
+
+```ada
+procedure P;
+   with Import => True,
+        Convention => C;
+
+procedure P is
+begin
+   null;
+end;
+```
+
+## Quizz 2: Is there a compilation error
+
+```ada
+procedure P 
+   with Export => True, Convention => C
+is
+begin
+   null;
+end;
+```
+
+## Quizz 3: Is there a compilation error
+
+```ada
+procedure P is
+   procedure P1;
+     with Export => True, Convention => C;
+
+   procedure P1 is
+   begin
+      null;
+   end P1;
+
+begin
+   null;
+end;
+```
+
+## Quizz 4: Is there a compilation error
+
+```ada
+function Get_Version return String
+  with Import => True, Convention => C;
+```
+
+## Quizz 5: Is there a compilation error
+
+```ada
+procedure Put_Str (S : String)
+  with Import => True, Convention => C;
+```
