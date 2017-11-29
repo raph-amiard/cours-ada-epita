@@ -1,0 +1,3 @@
+stm32_project_template/obj
+project_template/obj_debug
+project_template/obj_release
