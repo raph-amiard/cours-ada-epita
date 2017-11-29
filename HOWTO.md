@@ -55,6 +55,10 @@ cd stlink
 sudo cp etc/udev/rules.d/49-stlinkv* /etc/udev/rules.d
 ~~~
 
+Also, you need both st-flash and st-util. After build, st-util should be in
+`build/Release/src/gdbserver`, and st-flash in `build/Release`. Put both in
+your path !
+
 ## Setting up Ada_Drivers_Library
 
 - Follow instructions from here: https://github.com/AdaCore/Ada_Drivers_Library/tree/master/examples
