@@ -3107,22 +3107,18 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Main is
    Ok : Boolean := False;
-
    protected O is
       entry P;
       procedure P2;
    end O;
-
    protected body O is
       entry P when Ok is begin
          Put_Line ("OK");
       end P;
-
       procedure P2 is begin
          null;
       end P2;
    end O;
-
    task T;
    task body T is begin
       delay 1.0;
@@ -3400,4 +3396,561 @@ function Get_Version return String
 ```ada
 procedure Put_Str (S : String)
   with Import => True, Convention => C;
+```
+
+# Low level
+
+## Deallocation
+
+```ada
+with Ada.Unchecked_Deallocation;
+
+procedure Dealloc is 
+   type My_Acc is access My_Type;
+   procedure Deallocate is new
+   Ada.Unchecked_Deallocation (My_Type, My_Acc);
+   V : My_Acc;
+begin
+   V := new My_Type;
+   Deallocate (V);
+   --  Release the memory, and set V to null (noop if V is already null)
+end Dealloc;
+```
+
+## Querying address
+
+```ada
+with System; use System;
+
+package P is
+   V : Integer;
+   V_Addr : Address := V'Address;
+   --                  ^ Address of V
+end P;
+```
+
+
+## Querying alignment
+
+```ada
+package P is
+   V : Integer;
+   V_Alignment : Integer := V'Alignment;
+   --                       ^ Alignment of V
+end P;
+```
+
+## Querying size
+
+```ada
+package P is
+   V : Integer;
+
+   Typ_Size : Integer := Integer'Size;
+   --                    ^ Minimum size for an Integer, in
+   --                      bits (== 32)
+
+   Typ_Size : Integer := Natural'Size;
+   --                    ^ Minimum size for a Natural, in
+   --                      bits (== 31)
+
+end P;
+```
+
+## Querying size
+
+```ada
+package P is
+   Instance_Size : Integer := V'Size;
+   --                         ^ Actual size, in bits
+
+   Typ_Size : Integer := Integer'Max_Size_In_Storage_Elements;
+   --                    ^ Max size, in storage elements,
+   --                      used to store an Int
+   --                      (storage element -> byte)
+end P;
+```
+
+## Specifying address
+
+```ada
+with System; use System;
+
+package P is
+   V : Integer;
+
+   for V’Address
+   use System.Storage_Elements.To_Address (16#fff_0000#);
+   --                                      ^ Must be correctly aligned
+end P;
+```
+
+## Specifying address
+
+```ada
+with System; use System;
+
+package P is
+   V : Integer
+   with Address => System’To_Address (16#fff_0000#);
+   --                    ^ GNAT specific attribute
+
+   pragma Import (Ada, V);
+   -- Prevents initialization
+end P;
+```
+
+## Specifying address
+
+```ada
+procedure Pouet is
+   A : array (1 .. 32) of Integer;
+
+   B : array (1 .. 32 * 4) of Character
+   with Address => A'Address;
+   --  B is now an overlay for A, except you manipulate
+   --  memory in bytes.
+
+   type Rec is record
+      A, B : Integer;
+   end Rec;
+
+   Inst : Rec;
+
+   C : Integer
+   with Address => Inst'Address;
+begin
+   null;
+end Pouet;
+```
+
+## Specifying size
+
+```ada
+with System; use System;
+
+package P is
+   V : Natural
+   with Size => 32;
+   --           ^ Must be large enough.
+   --           ^ Compiler can choose bigger size.
+end P;
+```
+
+## Specifying alignment
+
+```ada
+with System; use System;
+
+package P is
+   V : Integer;
+   with Alignment => 1;
+   --                ^ Address must be a multiple of this.   
+   --                  So compiler can over align.
+end P;
+```
+
+## Packing arrays
+
+```ada
+procedure BV is
+   type Bit_Vector is array (0 .. 31) of Boolean;
+   pragma Pack (Bit_Vector);
+   
+   B : Bit_Vector;
+begin
+   Put_Line (Integer'Image (B'Size));
+   -- Prints 32
+end;
+```
+
+## Packing records
+
+```ada
+procedure Packed_Rec is
+   type My_Rec is record
+      A : Boolean;
+      C : Natural;
+   end record
+   with Pack;
+
+   R : My_Rec;
+begin
+   Put_Line (Integer'Image (R'Size));
+   -- Prints 32
+end Packed_Rec;
+```
+
+## Specifying record layout
+
+```ada
+type Register is range 0 .. 15;
+   with Size => 4;
+--  Size on type only affects components
+
+type Opcode is (Load, Inc, Dec, ..., Mov);
+   with Size => 8;
+
+type RR_370_Instruction is record
+   Code : Opcode;
+   R1   : Register;
+   R2   : Register;
+end record;
+
+for RR_370_Instruction use record
+   Code at 0 range 0 .. 7;
+   R1 at 1 range 0 .. 3;
+   R2 at 1 range 4 .. 7;
+end record;
+```
+
+## Bit to bit conversion
+
+```ada
+with Ada.Unchecked_Conversion;
+
+procedure Unconv is
+   subtype Str4 is String (1 .. 4);
+   function To_Str4 is new Ada.Unchecked_Conversion (Integer, Str4);
+
+   V : Integer;
+   S : Str4;
+   S := To_Str4 (V)
+begin
+   null;
+end Unconv;
+```
+
+## Pragma Volatile
+
+```ada
+V : Integer;
+pragma Volatile (V);
+```
+
+## Pragma Atomic
+
+```ada
+V : Integer;
+pragma Atomic (V);
+```
+
+## Pragma Inline
+
+```ada
+package P is
+   procedure Proc (A : Integer);
+   pragma Inline (Proc);
+   --  Compiler can read the body
+end P;
+```
+
+# Object oriented programming
+
+## Classes
+
+```ada
+package P is
+   type My_Class is tagged null record;
+   --  Just like a regular record, but with tagged qualifier
+   
+   --  Methods are outside of the type definition
+   
+   procedure Do_Something (Self : in out My_Class);
+end P;
+```
+
+## Classes
+
+```ada
+package P is
+   type My_Class is tagged null record;
+
+   type Derived is new My_Class with record
+       A, B : Integer;
+       --  You can add field in derived types.
+   end record;
+end P;
+```
+
+## Methods
+
+```ada
+package P is
+   type My_Class is tagged record
+      Id : Integer;
+   end record;
+
+   procedure Foo (Self : My_Class);
+   --  If you define a procedure taking a My_Class argument,
+   --  in the same package, it will be a method.
+
+   type Derived is new My_Class with null record;
+
+   overriding procedure Foo (Self : My_Class);
+   --  overriding qualifier is optional, but if it is here,
+   --  it must be valid.
+end P;
+```
+
+## Dispatching calls
+
+```ada
+with P; use P;
+
+procedure Main is
+   Instance   : My_Class;
+   Instance_2 : Derived;
+begin
+   Foo (Instance);
+   --  Static (non dispatching) call to Foo of My_Class
+
+   Foo (Instance_2);
+   --  Static (non dispatching) call to Foo of Derived
+end Main;
+```
+
+## Dispatching calls
+
+```ada
+with P; use P;
+
+procedure Main is
+   Instance   : My_Class'Class := My_Class'(12);
+   --           ^ Denotes the classwide type
+   --             Needs to be initialized
+   --
+   --  Classwide type can be My_Class or any descendent of
+   --  My_Class
+   Instance_2 : My_Class'Class := Derived'(12);
+begin
+   Foo (Instance);
+   --  Dynamic (dispatching) call to Foo of My_Class
+
+   Foo (Instance_2);
+   --  Dynamic (dispatching) call to Foo of Derived
+end Main;
+```
+
+## Dispatching calls
+
+```ada
+with P; use P;
+
+procedure Main is
+   Instance   : My_Class'Class := My_Class'(12);
+   Instance_2 : My_Class'Class := Derived'(12);
+begin
+   Foo (Instance);
+   --  Dynamic (dispatching) call to Foo of My_Class
+
+   Foo (Instance_2);
+   --  Dynamic (dispatching) call to Foo of Derived
+end Main;
+```
+
+## Conversions
+
+```ada
+with P; use P;
+
+procedure Main is
+   Instance   : Derived'Class := Derived'(12);
+   Instance_2 : My_Class'Class := Instance;
+   -- Implicit conversion from Derived'Class to My_Class'Class
+   Instance   : My_Class := My_Class (Instance_2);
+   --                       ^ Can convert from 'Class to definite
+   Instance_2 : Derived;
+begin
+   Instance := My_Class (Instance_2);
+   --          ^ Explicit conversion from definite derived
+   --            object to definite My_Class (called view
+   --            conversion)
+   Instance_2 := Derived (Instance);
+   --            ^ COMPILE ERROR, from definite base to definite subclass
+   declare
+      D : Derived'Class := Derived'Class (Instance_2);
+      --                   ^ From classwide base to classwide subclasss
+   begin
+      null;
+   end;
+end Main;
+```
+
+## Dot notation
+
+```ada
+with P;
+
+procedure Main is
+   Instance   : P.My_Class'Class := My_Class'(12);
+begin
+   Instance.Foo;
+   --  Call to procedure Foo, with dot notation.
+   --  Procedure is visible even though not in scope.
+end Main;
+```
+
+# Quizz: Object oriented programming
+
+## Quizz 1: Is there a compilation error?
+
+```ada
+-- p.ads
+package P is
+   type T is tagged null record;
+   procedure Proc (V : T);
+end P;
+
+-- main.adb
+with P;
+procedure Main is
+   V : P.T;
+begin
+   Proc (V);
+   V.Proc;
+end Main;
+```
+
+## Quizz 2: Is there a compilation error?
+
+```ada
+package P is
+   type T1 is record
+      F1 : Integer;
+   end record;
+
+   type T2 is new T1 with record
+      F2 : Integer;
+   end record;
+end P;
+```
+
+## Quizz 3: Is there a compilation error?
+
+```ada
+package P is
+   type T1 is range 1 .. 10;
+   procedure Proc (V : T1);
+
+   type T2 is new T1;
+
+   type T3 is new T2;
+   overriding procedure Proc (V : T3);
+end P;
+```
+
+## Quizz 4: Who is called ?
+
+```ada
+--  pck.ads
+package Pck is
+   type Root is tagged null record;
+   procedure P (V : Root);
+
+   type Child is new Root with null record;
+   overriding procedure P (V : Child);
+
+   type Grand_Child is new Child with null record;
+   overriding procedure P (V : Grand_Child);
+end Pck;
+
+--  main.adb
+with Pck;
+procedure Main is
+   V : Pck.Child;
+begin
+   V.P;
+end;
+```
+
+## Quizz 5: Who is called ?
+
+```ada
+--  pck.ads
+package Pck is
+   type Root is tagged null record;
+   procedure P (V : Root);
+
+   type Child is new Root with null record;
+   overriding procedure P (V : Child);
+
+   type Grand_Child is new Child with null record;
+   overriding procedure P (V : Grand_Child);
+end Pck;
+
+--  main.adb
+with Pck;
+procedure Main is
+   V : Child'Class := Grand_Child'(others => <>);
+begin
+   V.P;
+end;
+```
+
+## Quizz 6: Who is called ?
+
+```ada
+--  pck.ads
+package Pck is
+   type Root is tagged null record;
+   procedure P (V : Root);
+
+   type Child is new Root with null record;
+   overriding procedure P (V : Child);
+
+   type Grand_Child is new Child with null record;
+   overriding procedure P (V : Grand_Child);
+end Pck;
+
+--  main.adb
+with Pck;
+procedure Main is
+   W : Grand_Child;
+   V : Child := Child (W);
+begin
+   V.P;
+end;
+```
+
+## Quizz 7: Who is called ?
+
+```ada
+--  pck2.ads
+with Pck; use Pck;
+package body Pck2 is
+   procedure Call (V : Root) is
+   begin
+       V.P;
+   end Call;
+end Pck2;
+
+--  main.adb
+with Pck, Pck2; use Pck, Pck2;
+procedure Main is
+   V : Child;
+begin
+   Call (Root (V));
+end;
+```
+
+## Quizz 8: Who is called ?
+
+```ada
+--  pck2.adb/s
+with Pck; use Pck;
+package body Pck2 is
+   procedure Call (V : Root'Class) is
+   begin
+       V.P;
+   end Call;
+end Pck2;
+
+--  main.adb
+with Pck, Pck2; use Pck, Pck2;
+procedure Main is
+   V : Child;
+begin
+   Call (V);
+end;
 ```
