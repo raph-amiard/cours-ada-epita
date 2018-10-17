@@ -69,3 +69,54 @@ Write a function that converts an `Integer` into a `String` using
 [Roman numerals](https://en.wikipedia.org/wiki/Roman_numerals).
 
 Write the inverse function.
+
+Class 2
+-------
+
+### Exercize 1 [aggregates]
+
+Write a program that shows a rectangle triangle with `*` of size `N*N`, using
+array aggregates. For example, for `N=4`:
+
+~~~
+   *
+  **
+ ***
+****
+~~~
+
+### Exercize 2 [packages]
+
+Write a package (spec and body) that implements a singleton `Integer` stack (no
+type). The stack has a fixed maximum size of `512`.
+
+The public subprograms are:
+
+```ada
+procedure Pop (V : out Integer);
+procedure Push (V : Integer);
+```
+
+### Exercize 3 [packages, types, privacy]
+
+Add a `Stack` private type to the previous package, to allow having several
+distinct stacks in the same program.
+
+### Exercize 4 [privacy, heap allocation]
+
+Modify the implementation of the previous package to use a linked list instead
+of an array.
+
+OR
+
+Modify the implementation of the previous package so that the programmer can
+specify the size of the array when declaring the stack.
+
+OR
+
+Modify the implementation of the previous package so that it uses an array that
+is automatically resized when the programmer goes beyond the initial max size.
+
+### Exercize 5 [generics]
+
+Make the previous package generic on the type of elements.
