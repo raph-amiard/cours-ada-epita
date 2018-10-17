@@ -1,10 +1,10 @@
-Exercizes
+Exercises
 =========
 
 Class 1
 -------
 
-### Exercize 1 [arrays]
+### Exercise 1 [arrays]
 
 Write the body of the following `Invert` function:
 
@@ -36,7 +36,7 @@ begin
 end Test_Invert;
 ```
 
-### Exercize 1b [arrays]
+### Exercise 1b [arrays]
 
 Write the same subprogram, but as a procedure, that inverts the string in-place:
 
@@ -50,7 +50,7 @@ end Invert;
 
 Write associated tests.
 
-### Exercize 2 [arrays]
+### Exercise 2 [arrays]
 
 Write a function that converts an `Integer` into a `String`, without using the
 `'Image` attribute. Start by handling positive integers, then transition to all
@@ -58,12 +58,12 @@ integers.
 
 Write associated tests.
 
-### Exercize 3 [arrays]
+### Exercise 3 [arrays]
 
 Write a function that converts a `String` into an `Integer`, with associated
 tests.
 
-### BONUS Exercize 4 [arrays]
+### BONUS Exercise 4 [arrays]
 
 Write a function that converts an `Integer` into a `String` using
 [Roman numerals](https://en.wikipedia.org/wiki/Roman_numerals).
@@ -73,7 +73,7 @@ Write the inverse function.
 Class 2
 -------
 
-### Exercize 1 [aggregates]
+### Exercise 1 [aggregates]
 
 Write a program that shows a rectangle triangle with `*` of size `N*N`, using
 array aggregates. For example, for `N=4`:
@@ -85,7 +85,7 @@ array aggregates. For example, for `N=4`:
 ****
 ~~~
 
-### Exercize 2 [packages]
+### Exercise 2 [packages]
 
 Write a package (spec and body) that implements a singleton `Integer` stack (no
 type). The stack has a fixed maximum size of `512`.
@@ -97,12 +97,12 @@ procedure Pop (V : out Integer);
 procedure Push (V : Integer);
 ```
 
-### Exercize 3 [packages, types, privacy]
+### Exercise 3 [packages, types, privacy]
 
 Add a `Stack` private type to the previous package, to allow having several
 distinct stacks in the same program.
 
-### Exercize 4 [privacy, heap allocation]
+### Exercise 4 [privacy, heap allocation]
 
 Modify the implementation of the previous package to use a linked list instead
 of an array.
@@ -117,6 +117,6 @@ OR
 Modify the implementation of the previous package so that it uses an array that
 is automatically resized when the programmer goes beyond the initial max size.
 
-### Exercize 5 [generics]
+### Exercise 5 [generics]
 
 Make the previous package generic on the type of elements.
