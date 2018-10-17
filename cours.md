@@ -1,64 +1,64 @@
-% Le langage Ada
+% Introduction to Ada
 % Raphael Amiard - Adacore
 % amiard@adacore.com
 
 ---
 
-## Historique
+## History
 
-- Dans les années 70, le DOD souffre d’une explosion du nombre des langages
-  utilisés
-- Il lance un concours international pour un langage qui répond à toutes ces
-  exigences (1974)
+- In the seventies, the DOD suffers from an explosion of the number of
+  programming languages used.
 
----
-
-## Historique
-
-- Plusieurs propositions
-- Vainqueur: L’équipe de Jean Ichbiah, CII Honeywell Bull
-- Première normalisation du langage (ANSI, ISO): 1983
-- Révisions majeures en 1995, 2005, 2012.
-- L’un des seuls langages normalisés à priori
+- They launch an international competition to design a language that fullfils
+  all the requirements (1974)
 
 ---
 
-## Exigences du langage
+## History
 
-- Généraliste
-    * Efficacité
-    * Simplicité
-    * Implémentabilité
-
-- Haut niveau de génie logiciel
-    * Maintenabilité
-    * Portabilité
-    * Fiabilité
-
-- Norme claire et non ambiguë
-- Travail sur des plateformes embarquées
-- Traitements parallèles
-- Gestion des données bas niveau
+- Several propositions
+- Winner: Jean Ichbiah's team, CII Honeywell Bull
+- First standard of the language langage (ANSI, ISO): 1983
+- Major revisions in 1995, 2005, 2012.
 
 ---
 
-## Résultat: Ada
+## Requirements
 
-- Dérivé d’une syntaxe type Pascal
-- Impératif (comme Fortran, Cobol, C/C++, Java, Python...)
-- Parallélisme intégré au langage (par opposition aux API type pthread)
-- Modulaire (facilité de mise en place de sous-ensembles)
-- Vérifications statiques et dynamiques (bornes...)
+- General purpose
+    * Efficient
+    * Simple
+    * Implementable
+
+- Safety critical
+    * Results in maintainable code
+    * Portable
+    * Resilient/safe
+
+- Standard should be clear and non ambiguous
+- Should work on embedded platforms
+- Should handle concurrency/parallelism
+- Should allow low-level data handling/hardward interface
 
 ---
 
-## Ada aujourd’hui
+## Result: Ada
 
-### Marché privilégié:
+- Syntax: Algol/Pascal derivative
+- Imperative (like Fortran, Cobol, C/C++, Java, Python...)
+- Tasking/parallelism integrated into the language (par opposition aux API type pthread)
+- Modular (packages, modules, libraries)
+- A lot of static AND dynamic checking
 
-* Systèmes temps-réel
-* Systèmes critiques (safety critical, mission critical)
-* Systèmes de sécurité (MILS)
+---
+
+## Ada today
+
+### Priviledged markets
+
+* Real time systems
+* Safety critical/mission critical systems
+* Security critical systems
 
 ### Exemples
 
@@ -71,7 +71,23 @@
 
 ---
 
-## Exemple: Hello, World
+## This class
+
+### Purpose
+
+* Introduction to Ada and the GCC/GNAT toolchain
+* Native programming and embedded (STM32F4)
+* Project: develop an embedded app running on bare metal, on a STM32F4 board.
+
+### Evaluation
+
+* Midterm exam: 50%
+* Project: 50%
+* TP exercizes: Bonus points!
+
+---
+
+## Example: Hello, World
 
 ```ada
 with Ada.Text_IO; use Ada.Text_IO;
