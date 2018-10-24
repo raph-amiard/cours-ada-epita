@@ -2048,7 +2048,7 @@ begin
 end Test_Stack;
 ```
 
-## Limited types
+## Limited types
 
 ```ada
 package Stacks is
@@ -2068,7 +2068,7 @@ private
 end Stacks;
 ```
 
-## Limited types
+## Limited types
 
 ```ada
 package Stacks is
