@@ -3357,6 +3357,11 @@ project Multilang is
 end Multilang;
 ```
 
+## More details
+
+- Ada Reference Manual annex. B
+- <http://www.adaic.org/resources/add_content/standards/05aarm/html/AA-B.html>
+
 # Quizz
 
 ## Quizz 1: Is there a compilation error
@@ -3640,15 +3645,16 @@ end Unconv;
 ## Pragma Volatile
 
 ```ada
-V : Integer;
-pragma Volatile (V);
+type Video_Buffer is array (Natural range <>) of RGB_Value;
+pragma Volatile (Video_Buffer);
 ```
 
 ## Pragma Atomic
 
 ```ada
-V : Integer;
-pragma Atomic (V);
+Device_Status : Status_Register;
+pragma Atomic (Device_Status);
+for Device_Status'Address use System.Storage_Elements.To_Address (16#8010_FF74#);
 ```
 
 ## Pragma Inline
