@@ -22,7 +22,6 @@ You can put this function inside a main procedure that will serve as a test proc
 
 ```ada
 --  test_invert.adb
-with Invert;
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Test_Invert is
