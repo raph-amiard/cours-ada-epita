@@ -9,6 +9,8 @@ project Prj extends "examples/shared/common/common.gpr" is
    for Main use ("main.adb");
    for Source_Dirs use ("src");
 
+   package Compiler renames STM32F429_Discovery_Full.Compiler;
+
    package Linker is
       for Default_Switches ("ada") use
         ("-Wl,--gc-sections", "-Wl,--print-memory-usage");
