@@ -83,7 +83,7 @@
 
 * Midterm exam: 50%
 * Project: 50%
-* TP exercizes: Bonus points!
+* TP exercises: Bonus points!
 
 ---
 
