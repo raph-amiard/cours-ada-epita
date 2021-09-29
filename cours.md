@@ -549,6 +549,17 @@ begin
 end Greet;
 ```
 
+## Records
+
+```ada
+type Date is record
+   --  The following declarations are components of the record
+   Day   : Integer range 1 .. 31;
+   Month : Month_Name;
+   Year  : Integer range 1 .. 3000; --  You can add custom constraints on fields
+end record;
+```
+
 ## Strong typing
 
 ```ada
@@ -1620,17 +1631,6 @@ begin
 
     Put_Line ("Hi " & Full_Name (1 .. 7)); --  Prints "Hi Raphael"
 end;
-```
-
-## Records
-
-```ada
-type Date is record
-   --  The following declarations are components of the record
-   Day   : Integer range 1 .. 31;
-   Month : Month_Name;
-   Year  : Integer range 1 .. 3000; --  You can add custom constraints on fields
-end record;
 ```
 
 ## Records - default values
